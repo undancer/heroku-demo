@@ -1,5 +1,14 @@
-# setup
-# build
-# release
-run:
-  web: echo "heroku yaml"
+setup:
+  addons:
+    - plan: heroku-postgresql
+      as: DATABASE
+build:
+  docker:
+    web: Dockerfile
+release:
+  command:
+    - /app/scripts/deployment-tasks.sh
+    # - ./deployment-tasks.sh
+  image: web
+# run:
+#   web: echo "heroku yaml"

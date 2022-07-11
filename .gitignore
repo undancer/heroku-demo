@@ -1,0 +1,4 @@
+/app
+/dist
+/web/package-lock.json
+/web/pnpm-lock.yaml
