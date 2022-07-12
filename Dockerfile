@@ -19,6 +19,12 @@ RUN STACK=heroku-20 /tmp/buildpack/heroku/nodejs/bin/compile /app/web /tmp/nodej
 RUN STACK=heroku-20 /tmp/buildpack/heroku/go/bin/compile /app/server /tmp/go_build_cache /tmp/go_env
 
 
+RUN ls -l /tmp/nodejs_build_cache
+RUN ls -l /tmp/nodejs_env
+RUN ls -l /tmp/go_build_cache
+RUN ls -l /tmp/go_env
+
+
 # FROM node:lts as builder
 
 # COPY ./ /app
