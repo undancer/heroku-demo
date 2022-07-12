@@ -6,7 +6,8 @@ COPY . /app
 WORKDIR /app
 
 # Setup buildpack
-RUN mkdir -p /tmp/buildpack/heroku/go /tmp/buildpack/heroku/nodejs /tmp/build_cache /tmp/env
+RUN mkdir -p /tmp/buildpack/heroku/go /tmp/go_build_cache /tmp/go_env
+RUN mkdir -p /tmp/buildpack/heroku/nodejs /tmp/nodejs_build_cache /tmp/nodejs_env
 RUN curl https://buildpack-registry.s3.amazonaws.com/buildpacks/heroku/go.tgz | tar xz -C /tmp/buildpack/heroku/go
 RUN curl https://buildpack-registry.s3.amazonaws.com/buildpacks/heroku/nodejs.tgz | tar xz -C /tmp/buildpack/heroku/nodejs
 
@@ -14,7 +15,8 @@ RUN ls -l /tmp/buildpack/heroku/go
 RUN ls -l /tmp/buildpack/heroku/nodejs
 
 #Execute Buildpack
-# RUN STACK=heroku-20 /tmp/buildpack/heroku/go/bin/compile /app /tmp/build_cache /tmp/env
+RUN STACK=heroku-20 /tmp/buildpack/heroku/nodejs/bin/compile /app/web /tmp/nodejs_build_cache /tmp/nodejs_env
+RUN STACK=heroku-20 /tmp/buildpack/heroku/go/bin/compile /app/server /tmp/go_build_cache /tmp/go_env
 
 
 # FROM node:lts as builder
